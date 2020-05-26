@@ -1,0 +1,20 @@
+0. upload all .whl file to raspberry py undel the mapping volume /config of the home assistant container
+1. logon to raspberry pi with user pi
+2. $ docker container ls to find the name of home assistant container
+3. $ docker exec -it <container name> /bin/bash
+4. install all the depency .whl file # pip install <.whl>
+5. install tensorflow whl # pip install tensorflow-1.13.2-cp37-cp37m-linux_armv7l.whl
+6. test the installation # python -c 'import tensorflow as tf; print(tf.__version__)' 
+    the last line of the output ahould be 1.13.2 then you have sucessfully install tensor flow on your home assistant.
+if somthing fail you may need to install some othe apk packages   
+
+Common apk package dependency.
+
+apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libexecinfo-dev  
+apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community hdf5 
+apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community hdf5-dev
+apk add py3-h5py
+apk add musl-dev
+apk add gcc
+
+Backup your Installation before try this. I have sucessfully install without problem except missing dependency
