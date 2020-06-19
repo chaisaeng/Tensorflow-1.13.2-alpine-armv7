@@ -1,0 +1,27 @@
+git clone https://github.com/tensorflow/tensorflow.git
+cd tensorflow
+git fetch --all --tags --prune
+git checkout tags/v1.13.2
+bazel build \
+             --jobs=5 \
+             --ram_utilization_factor=60 \
+             --config=opt \
+             --config=noaws \
+             --config=nogcp \
+             --config=nohdfs \
+             --config=noignite \
+             --config=nokafka \
+             --config=nonccl \
+             --config=monolithic \
+             --copt=-mfpu=neon-vfpv4 \
+             --copt=-ftree-vectorize \
+             --copt=-funsafe-math-optimizations \
+             --copt=-ftree-loop-vectorize \
+             --copt=-fomit-frame-pointer \
+             --copt=-DRASPBERRY_PI \
+             --host_copt=-DRASPBERRY_PI \
+             --linkopt=-Wl,-latomic,-lexecinfo \
+             --host_linkopt=-Wl,-latomic,-lexecinfo \
+               //tensorflow/tools/pip_package:build_pip_package \
+              //tensorflow:libtensorflow_framework.so \
+              //tensorflow:libtensorflow.so
