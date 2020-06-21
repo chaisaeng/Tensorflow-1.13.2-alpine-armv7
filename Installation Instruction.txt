@@ -2,13 +2,13 @@ This instruction updated to the latest docker image of home assistant as of 06/2
 
 *** Backup your installation before continue ***
 
-After deploy Home Assistant using docker compose or nay mean on raspberry pi 
+After deploy Home Assistant using docker compose or any mean on raspberry pi 
 - log on using user pi 
-- $ docker container ls fine the docker container name
+- $ docker container ls find the docker container's name
 - $ docker exec -it <container name> /bin/bash
 - Install common apk dependency
-  $ apk add libatomic
-  $ apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libexecinfo
+  # apk add libatomic
+  # apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libexecinfo
 - upload all .whl file to raspberry-pi under the mapping volume /config of the Home Assistant container
 - install all the depency .whl file # pip install <.whl>
 - install tensorflow whl # pip install tensorflow-1.13.2-cp37-cp37m-linux_armv7l.whl
@@ -19,5 +19,5 @@ The changes made to the container will lost if using docker-compose down then st
 if needed you can commit the changes made to a new docker image then afterward edit the docker-compose.yaml 
 to the new image which inclde all changed made before.
 
-- $ docker container ls fine the docker container id
+- $ docker container ls find the docker container's id
 - $ docker commit <container id> <image-name>:<version>
