@@ -21,3 +21,19 @@ to the new image which inclde all changed made before.
 
 - $ docker container ls find the docker container's id
 - $ docker commit <container id> <image-name>:<version>
+
+My docker-compose.yaml content
+
+version: '2'
+services:
+  hassio:
+    image: homeassistant/home-assistant:latest
+    container_name: homeassistant
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - 8123:8123
+    volumes:
+      - ./volumes/hassio/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/letsencrypt:/certs
