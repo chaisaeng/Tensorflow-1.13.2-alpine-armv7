@@ -1,20 +1,23 @@
-0. upload all .whl file to raspberry py undel the mapping volume /config of the home assistant container
-1. logon to raspberry pi with user pi
-2. $ docker container ls to find the name of home assistant container
-3. $ docker exec -it <container name> /bin/bash
-4. install all the depency .whl file # pip install <.whl>
-5. install tensorflow whl # pip install tensorflow-1.13.2-cp37-cp37m-linux_armv7l.whl
-6. test the installation # python -c 'import tensorflow as tf; print(tf.__version__)' 
-    the last line of the output ahould be 1.13.2 then you have sucessfully install tensor flow on your home assistant.
-if somthing fail you may need to install some othe apk packages   
+This instruction updated to the latest docker image of home assistant as of 06/21/2020
 
-Common apk package dependency.
+*** Backup your installation before continue ***
 
-apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libexecinfo-dev  
-apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community hdf5 
-apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community hdf5-dev
-apk add py3-h5py
-apk add musl-dev
-apk add gcc
+After deploy Home Assistant using docker compose or nay mean on raspberry pi 
+- log on using user pi 
+- $ docker container ls fine the docker container name
+- $ docker exec -it <container name> /bin/bash
+- Install common apk dependency
+  $ apk add libatomic
+  $ apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libexecinfo
+- upload all .whl file to raspberry-pi under the mapping volume /config of the Home Assistant container
+- install all the depency .whl file # pip install <.whl>
+- install tensorflow whl # pip install tensorflow-1.13.2-cp37-cp37m-linux_armv7l.whl
+- test the installation # python -c 'import tensorflow as tf; print(tf.__version__)' 
+    the last line of the output ahould be 1.13.2 then you have sucessfully install tensorflow on Home Assistant container
 
-Backup your Installation before try this. I have sucessfully install without problem except missing dependency
+The changes made to the container will lost if using docker-compose down then start it up again with docker-compose up
+if needed you can commit the changes made to a new docker image then afterward edit the docker-compose.yaml 
+to the new image which inclde all changed made before.
+
+- $ docker container ls fine the docker container id
+- $ docker commit <container id> <image-name>:<version>
