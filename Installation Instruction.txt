@@ -28,7 +28,7 @@ My docker-compose.yaml content
 
 version: '2'
 services:
-  hassio:
+  homeassistant:
     image: homeassistant/home-assistant:latest
     container_name: homeassistant
     restart: unless-stopped
