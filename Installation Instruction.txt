@@ -1,5 +1,5 @@
-This instruction updated to the latest docker image of home assistant as of 06/21/2020
-
+This instruction updated to the latest docker image of home assistant as of 07/14/2020
+this will resoled issue with latest home assistant 0.11.2.4
 *** Backup your installation before continue ***
 
 After deploy Home Assistant using docker compose or any mean on raspberry pi 
@@ -9,8 +9,10 @@ After deploy Home Assistant using docker compose or any mean on raspberry pi
 - Install common apk dependency
   # apk add libatomic
   # apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libexecinfo
+  # apk add openblas
 - upload all .whl file to raspberry-pi under the mapping volume /config of the Home Assistant container
 - install all the depency .whl file # pip install <.whl>
+- install latest aiohttp needed for airvisual as it was broken by some depency installed pip install aiohttp
 - install tensorflow whl # pip install tensorflow-1.13.2-cp37-cp37m-linux_armv7l.whl
 - test the installation # python -c 'import tensorflow as tf; print(tf.__version__)' 
     the last line of the output ahould be 1.13.2 then you have sucessfully install tensorflow on Home Assistant container
